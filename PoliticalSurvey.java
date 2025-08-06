@@ -47,19 +47,22 @@ class PoliticalSurvey {
     }
 
     private void updateScores(String answer, int questionIndex) {
-        int partyIndex = PoliticalSurveyQuestions.ANSWER_KEY[questionIndex][answer.charAt(0) - 'A'];
+        int answerIndex = answer.charAt(0) - 'A';
+        int partyIndex = PoliticalSurveyQuestions.ANSWER_KEY[questionIndex][answerIndex];
+        double weight = PoliticalSurveyQuestions.getQuestionWeight(questionIndex);
+
         switch (partyIndex) {
             case 0:
-                democraticScore++;
+                democraticScore += weight;
                 break;
             case 1:
-                libertarianScore++;
+                libertarianScore += weight;
                 break;
             case 2:
-                republicanScore++;
+                republicanScore += weight;
                 break;
             case 3:
-                independentScore++;
+                independentScore += weight;
                 break;
         }
     }
